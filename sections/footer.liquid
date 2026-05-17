@@ -1,0 +1,15 @@
+<footer class="foot">
+  <div class="wrap foot__inner">
+    <div class="brand brand--foot"><img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}" /></div>
+    <p>© {{ 'now' | date: '%Y' }} {{ shop.name }}. {{ section.settings.tagline }}</p>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    { "type": "text", "id": "tagline", "label": "Tagline", "default": "Made for the pet hair you can never quite escape." }
+  ]
+}
+{% endschema %}

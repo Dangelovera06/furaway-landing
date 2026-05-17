@@ -1,0 +1,26 @@
+<header class="nav">
+  <div class="wrap nav__inner">
+    <a href="{{ routes.root_url }}" class="brand"><img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}" /></a>
+    <nav class="nav__links" aria-label="Primary">
+      {%- for link in linklists[section.settings.menu].links -%}
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      {%- endfor -%}
+    </nav>
+    {%- assign featured = all_products[section.settings.featured_product] -%}
+    {%- if featured != blank -%}
+      <a href="{{ featured.url }}" class="btn btn--ghost">Shop — {{ featured.price | money_without_trailing_zeros }}</a>
+    {%- else -%}
+      <a href="{{ routes.all_products_collection_url }}" class="btn btn--ghost">Shop</a>
+    {%- endif -%}
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" },
+    { "type": "product", "id": "featured_product", "label": "Featured product (for header CTA price)" }
+  ]
+}
+{% endschema %}

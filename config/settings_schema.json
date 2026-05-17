@@ -1,0 +1,21 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Furaway",
+    "theme_version": "1.0.0",
+    "theme_author": "Furaway",
+    "theme_documentation_url": "https://furaway.example",
+    "theme_support_url": "https://furaway.example/support"
+  },
+  {
+    "name": "General",
+    "settings": [
+      {
+        "type": "product",
+        "id": "featured_product",
+        "label": "Featured product",
+        "info": "Used for the homepage Shop CTA and header price."
+      }
+    ]
+  }
+]

@@ -1,0 +1,31 @@
+<section class="wrap" style="padding:80px 24px;min-height:60vh">
+  <h1>Cart</h1>
+  {% if cart.item_count == 0 %}
+    <p>Your cart is empty. <a href="{{ routes.all_products_collection_url }}">Continue shopping →</a></p>
+  {% else %}
+    <form action="{{ routes.cart_url }}" method="post" novalidate>
+      <table style="width:100%;border-collapse:collapse;margin:24px 0">
+        <thead><tr><th align="left">Product</th><th align="right">Qty</th><th align="right">Total</th></tr></thead>
+        <tbody>
+          {% for item in cart.items %}
+          <tr style="border-top:1px solid #eee">
+            <td style="padding:16px 0">
+              <a href="{{ item.url }}">{{ item.product.title }}</a>
+              {% unless item.product.has_only_default_variant %}<div style="opacity:.6;font-size:.9em">{{ item.variant.title }}</div>{% endunless %}
+            </td>
+            <td align="right"><input type="number" name="updates[]" value="{{ item.quantity }}" min="0" style="width:60px" /></td>
+            <td align="right">{{ item.final_line_price | money_without_trailing_zeros }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:16px">
+        <div><strong>Subtotal: {{ cart.total_price | money_without_trailing_zeros }}</strong></div>
+        <div style="display:flex;gap:12px">
+          <button type="submit" name="update" class="btn btn--ghost">Update</button>
+          <button type="submit" name="checkout" class="btn btn--primary">Checkout</button>
+        </div>
+      </div>
+    </form>
+  {% endif %}
+</section>

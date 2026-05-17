@@ -1,0 +1,188 @@
+{% assign current_variant = product.selected_or_first_available_variant %}
+
+<main class="pdp">
+  <nav class="crumb wrap" aria-label="Breadcrumb">
+    <a href="{{ routes.root_url }}">Home</a> <span>/</span>
+    <a href="{{ routes.all_products_collection_url }}">Shop</a> <span>/</span>
+    <em>{{ product.title }}</em>
+  </nav>
+
+  <section class="pdp__top">
+    <div class="wrap pdp__grid">
+
+      <div class="gallery">
+        <div class="gallery__main">
+          <img id="mainImg" src="{{ current_variant.featured_image | default: product.featured_image | image_url: width: 1200 }}" alt="{{ product.title }}" />
+        </div>
+        {% if product.images.size > 1 %}
+        <div class="gallery__thumbs" role="tablist">
+          {% for image in product.images limit: 6 %}
+            <button class="thumb {% if forloop.first %}is-active{% endif %}" data-src="{{ image | image_url: width: 1200 }}" aria-label="Image {{ forloop.index }}">
+              <img src="{{ image | image_url: width: 240 }}" alt="" />
+            </button>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+
+      <aside class="buybox">
+        <span class="buybox__eyebrow">{{ product.vendor | default: 'The original' }}</span>
+        <h1 class="buybox__title">{{ product.title }}</h1>
+
+        {% if product.metafields.reviews.rating %}
+        <div class="rating">
+          <span class="rating__stars" aria-hidden="true">★★★★★</span>
+          <span class="rating__num">{{ product.metafields.reviews.rating }}</span>
+          <a href="#reviews" class="rating__link">{{ product.metafields.reviews.rating_count }} reviews</a>
+        </div>
+        {% else %}
+        <div class="rating">
+          <span class="rating__stars" aria-hidden="true">★★★★★</span>
+          <span class="rating__num">4.9</span>
+          <a href="#reviews" class="rating__link">2,314 reviews</a>
+        </div>
+        {% endif %}
+
+        <p class="buybox__lede">{{ product.description | default: 'One reusable tool. Zero refills.' }}</p>
+
+        <form method="post" action="{{ routes.cart_add_url }}" id="productForm" enctype="multipart/form-data">
+          <div class="price-row">
+            <span class="price-row__amount" id="priceAmount">{{ current_variant.price | money_without_trailing_zeros }}</span>
+            {% if current_variant.compare_at_price > current_variant.price %}
+              <span class="price-row__strike">{{ current_variant.compare_at_price | money_without_trailing_zeros }}</span>
+              {% assign discount = current_variant.compare_at_price | minus: current_variant.price | times: 100.0 | divided_by: current_variant.compare_at_price | round %}
+              <span class="price-row__pill">Save {{ discount }}%</span>
+            {% endif %}
+          </div>
+          <p class="price-row__sub">or 4 interest-free payments with Shop Pay</p>
+
+          {% for option in product.options_with_values %}
+            <div class="opt">
+              <div class="opt__label"><span>{{ option.name }}</span><span class="opt__pick" data-pick="{{ forloop.index0 }}">{{ option.selected_value }}</span></div>
+              <div class="opt__row variant-row" data-option-index="{{ forloop.index0 }}">
+                {% for value in option.values %}
+                  <button type="button"
+                          class="chip {% if value == option.selected_value %}is-active{% endif %}"
+                          data-value="{{ value | escape }}">
+                    <span class="chip__lbl">{{ value }}</span>
+                  </button>
+                {% endfor %}
+              </div>
+            </div>
+          {% endfor %}
+
+          <select name="id" id="variantSelect" hidden>
+            {% for v in product.variants %}
+              <option value="{{ v.id }}"
+                      data-price="{{ v.price | money_without_trailing_zeros }}"
+                      data-available="{{ v.available }}"
+                      data-options="{{ v.options | join: '|' | escape }}"
+                      {% if v.id == current_variant.id %}selected{% endif %}>
+                {{ v.title }}
+              </option>
+            {% endfor %}
+          </select>
+
+          <div class="qty-row">
+            <div class="qty" role="group" aria-label="Quantity">
+              <button type="button" id="qMinus" aria-label="Decrease">−</button>
+              <input type="number" name="quantity" id="qVal" value="1" min="1" />
+              <button type="button" id="qPlus" aria-label="Increase">+</button>
+            </div>
+            <button type="submit" class="btn btn--primary btn--cart">
+              <span>Add to cart</span><span class="dot">·</span><span id="ctaPrice">{{ current_variant.price | money_without_trailing_zeros }}</span>
+            </button>
+          </div>
+        </form>
+
+        <ul class="perks">
+          <li><b>Free US shipping</b> on every order</li>
+          <li><b>Ships in 24 hours</b> from California</li>
+          <li><b>30-day money-back</b> — no questions</li>
+          <li><b>2-year warranty</b> — replacement parts free</li>
+        </ul>
+
+        <div class="accord">
+          <details open><summary>Details</summary><div>{{ product.description }}</div></details>
+          {% if product.metafields.custom.whats_in_the_box %}
+          <details><summary>What's in the box</summary>{{ product.metafields.custom.whats_in_the_box }}</details>
+          {% endif %}
+          {% if product.metafields.custom.specs %}
+          <details><summary>Specs</summary>{{ product.metafields.custom.specs }}</details>
+          {% endif %}
+          <details><summary>Shipping & returns</summary><p>Free US shipping, ships in 1 business day. International shipping calculated at checkout. 30-day money-back if it doesn't earn its spot in your home.</p></details>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+  <section class="strip">
+    <div class="wrap strip__row">
+      <div><span class="strip__num">2,300+</span><span class="strip__lbl">5-star reviews</span></div>
+      <div><span class="strip__num">0</span><span class="strip__lbl">refills, forever</span></div>
+      <div><span class="strip__num">∞</span><span class="strip__lbl">surfaces it works on</span></div>
+      <div><span class="strip__num">30d</span><span class="strip__lbl">money-back trial</span></div>
+    </div>
+  </section>
+
+  <section class="finalcta">
+    <div class="wrap finalcta__inner">
+      <h2>Try it for 30 days.<br/><em>Keep it for years.</em></h2>
+      <p>If {{ product.title }} doesn't earn its spot in your home, send it back. Full refund, no questions.</p>
+      <a href="#buy" class="btn btn--primary btn--lg">Add to cart</a>
+    </div>
+  </section>
+</main>
+
+<script>
+(function(){
+  var form = document.getElementById('productForm');
+  if (!form) return;
+  var select = document.getElementById('variantSelect');
+  var priceEl = document.getElementById('priceAmount');
+  var ctaPrice = document.getElementById('ctaPrice');
+  var qty = document.getElementById('qVal');
+  document.getElementById('qPlus').addEventListener('click', function(){ qty.value = (+qty.value || 1) + 1; });
+  document.getElementById('qMinus').addEventListener('click', function(){ qty.value = Math.max(1, (+qty.value || 1) - 1); });
+
+  // gallery thumb switcher
+  document.querySelectorAll('.thumb').forEach(function(t){
+    t.addEventListener('click', function(){
+      document.querySelectorAll('.thumb').forEach(function(x){ x.classList.remove('is-active'); });
+      t.classList.add('is-active');
+      document.getElementById('mainImg').src = t.dataset.src;
+    });
+  });
+
+  // option pickers
+  var selected = [];
+  document.querySelectorAll('.variant-row').forEach(function(row){
+    var i = +row.dataset.optionIndex;
+    var active = row.querySelector('.chip.is-active');
+    selected[i] = active ? active.dataset.value : '';
+    row.querySelectorAll('.chip').forEach(function(chip){
+      chip.addEventListener('click', function(){
+        row.querySelectorAll('.chip').forEach(function(c){ c.classList.remove('is-active'); });
+        chip.classList.add('is-active');
+        selected[i] = chip.dataset.value;
+        var pick = document.querySelector('[data-pick="'+i+'"]');
+        if (pick) pick.textContent = chip.dataset.value;
+        updateVariant();
+      });
+    });
+  });
+
+  function updateVariant(){
+    var target = selected.join('|');
+    var match = null;
+    Array.prototype.forEach.call(select.options, function(o){
+      if (o.dataset.options === target) match = o;
+    });
+    if (!match) return;
+    select.value = match.value;
+    if (priceEl) priceEl.textContent = match.dataset.price;
+    if (ctaPrice) ctaPrice.textContent = match.dataset.price;
+  }
+})();
+</script>

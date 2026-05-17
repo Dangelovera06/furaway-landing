@@ -1,0 +1,8 @@
+<section class="wrap" style="padding:60px 24px">
+  <h1>Collections</h1>
+  <ul>
+    {% for collection in collections %}
+      <li><a href="{{ collection.url }}">{{ collection.title }}</a></li>
+    {% endfor %}
+  </ul>
+</section>
