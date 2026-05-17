@@ -1,0 +1,145 @@
+{% assign featured = all_products[settings.featured_product] %}
+{% if featured == blank %}{% assign featured = collections.all.products.first %}{% endif %}
+{% assign shop_url = featured.url | default: routes.all_products_collection_url %}
+{% assign price = featured.price | money_without_trailing_zeros | default: '$29' %}
+
+<section class="hero">
+  <div class="wrap hero__grid">
+    <div class="hero__copy">
+      <span class="eyebrow">Reusable · Refill-free · Pet-safe</span>
+      <h1>Pet hair,<br/><em>without the waste.</em></h1>
+      <p class="lede">One reusable tool. Zero refills. Lifts hair, lint, and fuzz from every surface your pet lives on.</p>
+      <div class="cta">
+        <a href="{{ shop_url }}" class="btn btn--primary">Shop Dune · {{ price }}</a>
+        <a href="#how" class="btn btn--text">See how it works →</a>
+      </div>
+      <ul class="trust">
+        <li>★★★★★ <span>4.9 / 5 from 2,300+ pet parents</span></li>
+        <li>· 30-day money-back · Free US shipping</li>
+      </ul>
+    </div>
+    <div class="hero__art">
+      <img src="{{ 'hero.png' | asset_url }}" alt="Dune pet hair remover resting on folded fabric" />
+    </div>
+  </div>
+</section>
+
+<section class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    <span>Couches</span><span>·</span><span>Clothes</span><span>·</span><span>Car seats</span><span>·</span><span>Beds</span><span>·</span><span>Blankets</span><span>·</span><span>Strollers</span><span>·</span><span>Couches</span><span>·</span><span>Clothes</span><span>·</span><span>Car seats</span><span>·</span><span>Beds</span><span>·</span><span>Blankets</span><span>·</span><span>Strollers</span>
+  </div>
+</section>
+
+<section id="why" class="why">
+  <div class="wrap why__grid">
+    <div class="why__head">
+      <span class="eyebrow">Why Dune</span>
+      <h2>The lint roller is over.</h2>
+      <p>Disposable sheets are slow, expensive, and end up in a landfill. Dune uses a self-cleaning chamber that traps hair on contact — and resets with one swipe.</p>
+    </div>
+    <div class="why__compare">
+      <div class="compare compare--bad">
+        <h3>Sticky lint rollers</h3>
+        <ul>
+          <li>~120 sheets per year, per pet</li>
+          <li>Loses tack after 2 swipes</li>
+          <li>Useless on couches & beds</li>
+          <li>Lands in landfill</li>
+        </ul>
+      </div>
+      <div class="compare compare--good">
+        <h3>Dune</h3>
+        <ul>
+          <li>One tool. Zero refills.</li>
+          <li>Picks up hair every time</li>
+          <li>Works on every fabric</li>
+          <li>Built to last years</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bedshot">
+  <img src="{{ 'bed.png' | asset_url }}" alt="Three Dune rollers in pastel colors on a cream knit bedspread" />
+</section>
+
+<section id="how" class="how">
+  <div class="wrap">
+    <span class="eyebrow">How it works</span>
+    <h2>Three seconds.<br/><em>Three steps.</em></h2>
+    <div class="how__grid">
+      <article class="step"><div class="step__num">01</div><h3>Roll</h3><p>Glide Dune across any surface. The self-cleaning head grabs hair on contact — no pressure, no patience.</p></article>
+      <article class="step"><div class="step__num">02</div><h3>Collect</h3><p>Hair, dander, and lint funnel into the sealed inner chamber. Nothing flies, nothing falls.</p></article>
+      <article class="step"><div class="step__num">03</div><h3>Empty</h3><p>Pull the base, dump the hair, snap it shut. Rinse when needed. Ready for next time.</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="colors" class="colors">
+  <div class="wrap colors__grid">
+    <div class="colors__art">
+      <img src="{{ 'colors.png' | asset_url }}" alt="Dune in four colorways: blush, sage, sky, and cloud" />
+    </div>
+    <div class="colors__copy">
+      <span class="eyebrow">Four colorways</span>
+      <h2>A tool you'll<br/><em>leave out.</em></h2>
+      <p>Most cleaning tools live in a closet. Dune lives on the side table. Pick the one that disappears into your space — or the one that doesn't.</p>
+      <ul class="swatches" aria-label="Available colors">
+        <li><span class="sw sw--blush"></span>Blush</li>
+        <li><span class="sw sw--sage"></span>Sage</li>
+        <li><span class="sw sw--sky"></span>Sky</li>
+        <li><span class="sw sw--cloud"></span>Cloud</li>
+      </ul>
+      <a href="{{ shop_url }}" class="btn btn--primary" style="margin-top:14px">Shop Dune · {{ price }}</a>
+    </div>
+  </div>
+</section>
+
+<section class="quote">
+  <div class="wrap">
+    <p class="quote__mark">"</p>
+    <blockquote>I used to buy lint rollers in 10-packs. I've owned Dune for 8 months and it's pulled more hair off my couch than I knew existed. I'm never going back.</blockquote>
+    <cite>— Maya R., golden retriever mom</cite>
+  </div>
+</section>
+
+<section id="buy" class="buy">
+  <div class="wrap buy__grid">
+    <div class="buy__art">
+      <img src="{{ 'product.png' | asset_url }}" alt="Dune pet hair remover, full body view" />
+    </div>
+    <div class="buy__copy">
+      <span class="eyebrow">DN-01 · The original</span>
+      <h2>One tool.<br/><em>Every room. Forever.</em></h2>
+      <ul class="features">
+        <li>✓ Self-cleaning head — no sticky refills</li>
+        <li>✓ Sealed hair chamber — no mess</li>
+        <li>✓ Lightweight, hand-fit body</li>
+        <li>✓ Replaceable parts (we send them free)</li>
+      </ul>
+      <div class="price">
+        <span class="price__amount">{{ price }}</span>
+        <span class="price__sub">or 4× with Shop Pay · Free US shipping</span>
+      </div>
+      <a href="{{ shop_url }}" class="btn btn--primary btn--lg">Shop Dune</a>
+      <p class="guarantee">30-day money-back · 2-year warranty</p>
+    </div>
+  </div>
+</section>
+
+<section class="studio">
+  <img src="{{ 'studio.png' | asset_url }}" alt="Dune in four colorways on acrylic display stands" />
+</section>
+
+<section id="faq" class="faq">
+  <div class="wrap">
+    <span class="eyebrow">Questions</span>
+    <h2>The short answers.</h2>
+    <details><summary>Does it actually work on couches?</summary><p>Yes — that's what we built it for. The self-cleaning head gets into woven and microfiber surfaces in a way sticky sheets physically can't.</p></details>
+    <details><summary>Will it scratch leather or delicate fabric?</summary><p>No. It's engineered to be soft on every surface we've tested, including suede, leather, and cashmere.</p></details>
+    <details><summary>What about cat hair?</summary><p>Same tool, same magic. Works on any pet hair.</p></details>
+    <details><summary>How do I clean it?</summary><p>Pull the base to dump. Rinse under warm water once a month. That's it.</p></details>
+    <details><summary>Shipping & returns?</summary><p>Free US shipping, ships in 1 business day. 30-day money-back if it doesn't earn its spot in your home.</p></details>
+  </div>
+</section>
