@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>FurAway FA-01 — The reusable pet hair remover</title>
+<meta name="description" content="The reusable pet hair remover, in four colors. Self-cleaning. Refill-free. Built for the way pets actually live." />
+<meta name="theme-color" content="#f3ede2" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav__inner">
+    <a href="index.html" class="brand">FurAway<span>°</span></a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="index.html#how">How it works</a>
+      <a href="index.html#uses">Where to use</a>
+      <a href="product.html" class="is-active">Shop</a>
+      <a href="index.html#faq">FAQ</a>
+    </nav>
+    <a href="#buy" class="btn btn--ghost">Add to cart — $29</a>
+  </div>
+</header>
+
+<main class="pdp">
+
+  <nav class="crumb wrap" aria-label="Breadcrumb">
+    <a href="index.html">Home</a> <span>/</span> <a href="product.html">Shop</a> <span>/</span> <em>FA-01 Pet Hair Remover</em>
+  </nav>
+
+  <section class="pdp__top">
+    <div class="wrap pdp__grid">
+
+      <div class="gallery">
+        <div class="gallery__main">
+          <img id="mainImg" src="img/hero.png" alt="FurAway pet hair remover" />
+        </div>
+        <div class="gallery__thumbs" role="tablist">
+          <button class="thumb is-active" data-src="img/hero.png" aria-label="Lifestyle on couch"><img src="img/hero.png" alt="" /></button>
+          <button class="thumb" data-src="img/product.png" aria-label="Studio product shot"><img src="img/product.png" alt="" /></button>
+          <button class="thumb" data-src="img/colors.png" aria-label="All four colors"><img src="img/colors.png" alt="" /></button>
+          <button class="thumb" data-src="img/use-car.png" aria-label="In a car"><img src="img/use-car.png" alt="" /></button>
+          <button class="thumb" data-src="img/use-clothes.png" aria-label="On clothing"><img src="img/use-clothes.png" alt="" /></button>
+          <button class="thumb" data-src="img/use-bed.png" aria-label="On a bed"><img src="img/use-bed.png" alt="" /></button>
+          <button class="thumb" data-src="img/studio.png" aria-label="Studio four-up"><img src="img/studio.png" alt="" /></button>
+        </div>
+      </div>
+
+      <aside class="buybox">
+        <span class="buybox__eyebrow">FA-01 · The original</span>
+        <h1 class="buybox__title">The Pet Hair Remover</h1>
+
+        <div class="rating">
+          <span class="rating__stars" aria-hidden="true">★★★★★</span>
+          <span class="rating__num">4.9</span>
+          <a href="#reviews" class="rating__link">2,314 reviews</a>
+        </div>
+
+        <p class="buybox__lede">One reusable tool. Zero refills. Lifts pet hair, lint, and fuzz from every surface your dog calls a bed.</p>
+
+        <div class="price-row">
+          <span class="price-row__amount">$29</span>
+          <span class="price-row__strike">$39</span>
+          <span class="price-row__pill">Save 25%</span>
+        </div>
+        <p class="price-row__sub">or 4 interest-free payments of $7.25 with Shop Pay</p>
+
+        <div class="opt">
+          <div class="opt__label"><span>Color</span><span id="colorPick">Sage</span></div>
+          <div class="opt__row" id="colorRow">
+            <button class="chip is-active" data-name="Sage"><span class="chip__sw" style="background:#bfd0b3"></span><span class="chip__lbl">Sage</span></button>
+            <button class="chip" data-name="Blush"><span class="chip__sw" style="background:#e9bdb6"></span><span class="chip__lbl">Blush</span></button>
+            <button class="chip" data-name="Sky"><span class="chip__sw" style="background:#b9d3df"></span><span class="chip__lbl">Sky</span></button>
+            <button class="chip" data-name="Cloud"><span class="chip__sw" style="background:#efeae0"></span><span class="chip__lbl">Cloud</span></button>
+          </div>
+        </div>
+
+        <div class="opt">
+          <div class="opt__label"><span>Bundle</span><span id="bundlePick">Single · $29</span></div>
+          <div class="bundles" id="bundleRow">
+            <label class="bundle is-active" data-price="29" data-label="Single · $29">
+              <input type="radio" name="bundle" checked />
+              <div class="bundle__top">
+                <span class="bundle__name">Single</span>
+                <span class="bundle__price">$29</span>
+              </div>
+              <span class="bundle__sub">1 × FA-01</span>
+            </label>
+            <label class="bundle" data-price="52" data-label="Duo · $52">
+              <input type="radio" name="bundle" />
+              <span class="bundle__flag">Most popular</span>
+              <div class="bundle__top">
+                <span class="bundle__name">Duo</span>
+                <span class="bundle__price">$52 <s>$58</s></span>
+              </div>
+              <span class="bundle__sub">2 × FA-01 · Save $6</span>
+            </label>
+            <label class="bundle" data-price="72" data-label="Family · $72">
+              <input type="radio" name="bundle" />
+              <span class="bundle__flag bundle__flag--alt">Best value</span>
+              <div class="bundle__top">
+                <span class="bundle__name">Family</span>
+                <span class="bundle__price">$72 <s>$87</s></span>
+              </div>
+              <span class="bundle__sub">3 × FA-01 · Save $15</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="qty-row">
+          <div class="qty" role="group" aria-label="Quantity">
+            <button id="qMinus" aria-label="Decrease">−</button>
+            <span id="qVal">1</span>
+            <button id="qPlus" aria-label="Increase">+</button>
+          </div>
+          <button class="btn btn--primary btn--cart" id="addCart">
+            <span>Add to cart</span><span class="dot">·</span><span id="ctaPrice">$29</span>
+          </button>
+        </div>
+
+        <button class="btn btn--shoppay">Buy with <b>Shop Pay</b></button>
+
+        <ul class="perks">
+          <li><b>Free US shipping</b> on every order</li>
+          <li><b>Ships in 24 hours</b> from California</li>
+          <li><b>30-day money-back</b> — no questions</li>
+          <li><b>2-year warranty</b> — replacement parts free</li>
+        </ul>
+
+        <div class="accord">
+          <details open><summary>Details</summary><p>FA-01 is a refill-free pet hair remover engineered for everyday surfaces — woven couches, microfiber, denim, wool, cotton, leather, even cashmere. The self-cleaning head lifts hair on contact and seals it inside an empty-with-one-click chamber.</p></details>
+          <details><summary>What's in the box</summary><ul><li>1 × FA-01 pet hair remover</li><li>1 × Display stand</li><li>1 × Care card</li><li>0 × sticky sheets, ever</li></ul></details>
+          <details><summary>Specs</summary><ul><li>Dimensions: 6.7" × 1.8"</li><li>Weight: 4.8 oz</li><li>Body: Recycled ABS</li><li>Replaceable head & chamber</li></ul></details>
+          <details><summary>Shipping & returns</summary><p>Free US shipping, ships in 1 business day. International shipping calculated at checkout. 30-day money-back if it doesn't earn its spot in your home.</p></details>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+  <section class="strip">
+    <div class="wrap strip__row">
+      <div><span class="strip__num">2,300+</span><span class="strip__lbl">5-star reviews</span></div>
+      <div><span class="strip__num">0</span><span class="strip__lbl">refills, forever</span></div>
+      <div><span class="strip__num">∞</span><span class="strip__lbl">surfaces it works on</span></div>
+      <div><span class="strip__num">30d</span><span class="strip__lbl">money-back trial</span></div>
+    </div>
+  </section>
+
+  <section id="reviews" class="reviews">
+    <div class="wrap reviews__grid">
+      <div class="reviews__head">
+        <span class="eyebrow">Reviews</span>
+        <h2>4.9 out of 5.<br/><em>From people who own pets.</em></h2>
+        <div class="reviews__stars" aria-hidden="true">★★★★★</div>
+        <p class="reviews__sub">Based on 2,314 verified buyers</p>
+
+        <ul class="rbreak" aria-label="Rating breakdown">
+          <li><span>5</span><span class="bar"><span style="width:88%"></span></span><span>2,036</span></li>
+          <li><span>4</span><span class="bar"><span style="width:8%"></span></span><span>185</span></li>
+          <li><span>3</span><span class="bar"><span style="width:2%"></span></span><span>47</span></li>
+          <li><span>2</span><span class="bar"><span style="width:1%"></span></span><span>23</span></li>
+          <li><span>1</span><span class="bar"><span style="width:1%"></span></span><span>23</span></li>
+        </ul>
+      </div>
+
+      <div class="reviews__list">
+
+        <article class="rcard">
+          <div class="rcard__top"><span class="rcard__stars">★★★★★</span><span class="rcard__date">2 days ago</span></div>
+          <h3>Replaced 6 lint rollers in my house</h3>
+          <p>I have two retrievers. I had a lint roller in every room and the cleaning lady used to dump them all in the trash weekly. One FurAway, in the kitchen drawer, has replaced all of them. The car one is the only one I'll keep separate.</p>
+          <span class="rcard__by">— Priya K. · Verified buyer · <em>Sage</em></span>
+        </article>
+
+        <article class="rcard">
+          <div class="rcard__top"><span class="rcard__stars">★★★★★</span><span class="rcard__date">1 week ago</span></div>
+          <h3>The couch finally looks clean</h3>
+          <p>Bought it for the car, ended up using it on the couch the same day. Hair I'd given up on came right off. Looks good on the side table, doesn't look like a cleaning tool.</p>
+          <span class="rcard__by">— Marcus T. · Verified buyer · <em>Cloud</em></span>
+        </article>
+
+        <article class="rcard">
+          <div class="rcard__top"><span class="rcard__stars">★★★★★</span><span class="rcard__date">2 weeks ago</span></div>
+          <h3>Husky season, defeated</h3>
+          <p>If you have a double-coated dog you understand. I empty it twice a day during shedding season and it just keeps going. The chamber seal is the part I didn't know I needed — no hair clouds.</p>
+          <span class="rcard__by">— Elise R. · Verified buyer · <em>Blush</em></span>
+        </article>
+
+        <article class="rcard">
+          <div class="rcard__top"><span class="rcard__stars">★★★★☆</span><span class="rcard__date">3 weeks ago</span></div>
+          <h3>Great. Wish it came with a wall mount</h3>
+          <p>Works as advertised. Only feedback: I'd pay for a wall-mount accessory so it can live in the mudroom by the leashes.</p>
+          <span class="rcard__by">— Jordan P. · Verified buyer · <em>Sky</em></span>
+        </article>
+
+        <article class="rcard">
+          <div class="rcard__top"><span class="rcard__stars">★★★★★</span><span class="rcard__date">1 month ago</span></div>
+          <h3>Goodbye Amazon lint roller subscription</h3>
+          <p>I was on a recurring order for refills. Cancelled it. This pays for itself in 4 months and I'm done feeling guilty about the trash.</p>
+          <span class="rcard__by">— Naomi B. · Verified buyer · <em>Sage</em></span>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="finalcta">
+    <div class="wrap finalcta__inner">
+      <h2>Try it for 30 days.<br/><em>Keep it for years.</em></h2>
+      <p>If FurAway doesn't earn its spot in your home, send it back. Full refund, no questions.</p>
+      <a href="#buy" class="btn btn--primary btn--lg">Add to cart · $29</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__inner">
+    <div class="brand">FurAway<span>°</span></div>
+    <p>© <span id="yr"></span> FurAway. Made for the pet hair you can never quite escape.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // gallery
+  document.querySelectorAll('.thumb').forEach(t => {
+    t.addEventListener('click', () => {
+      document.querySelectorAll('.thumb').forEach(x => x.classList.remove('is-active'));
+      t.classList.add('is-active');
+      document.getElementById('mainImg').src = t.dataset.src;
+    });
+  });
+
+  // color
+  document.querySelectorAll('#colorRow .chip').forEach(c => {
+    c.addEventListener('click', () => {
+      document.querySelectorAll('#colorRow .chip').forEach(x => x.classList.remove('is-active'));
+      c.classList.add('is-active');
+      document.getElementById('colorPick').textContent = c.dataset.name;
+    });
+  });
+
+  // bundle + price + qty
+  let unit = 29, qty = 1, bundleLabel = 'Single · $29';
+  const recalc = () => {
+    document.getElementById('ctaPrice').textContent = '$' + (unit * qty);
+    document.getElementById('qVal').textContent = qty;
+    document.getElementById('bundlePick').textContent = bundleLabel;
+  };
+  document.querySelectorAll('#bundleRow .bundle').forEach(b => {
+    b.addEventListener('click', () => {
+      document.querySelectorAll('#bundleRow .bundle').forEach(x => x.classList.remove('is-active'));
+      b.classList.add('is-active');
+      b.querySelector('input').checked = true;
+      unit = +b.dataset.price;
+      bundleLabel = b.dataset.label;
+      recalc();
+    });
+  });
+  document.getElementById('qPlus').addEventListener('click', () => { qty++; recalc(); });
+  document.getElementById('qMinus').addEventListener('click', () => { if (qty>1) qty--; recalc(); });
+</script>
+</body>
+</html>
