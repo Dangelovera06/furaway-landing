@@ -26,26 +26,23 @@
       </div>
 
       <aside class="buybox">
-        <span class="buybox__eyebrow">{{ product.vendor | default: 'The original' }}</span>
+        <span class="buybox__eyebrow">{{ section.settings.eyebrow | default: product.vendor }}</span>
         <h1 class="buybox__title">{{ product.title }}</h1>
 
-        {% if product.metafields.reviews.rating %}
         <div class="rating">
           <span class="rating__stars" aria-hidden="true">★★★★★</span>
-          <span class="rating__num">{{ product.metafields.reviews.rating }}</span>
-          <a href="#reviews" class="rating__link">{{ product.metafields.reviews.rating_count }} reviews</a>
+          <span class="rating__num">{{ section.settings.rating | default: '4.9' }}</span>
+          <a href="#reviews" class="rating__link">{{ section.settings.review_count | default: '2,314' }} reviews</a>
         </div>
-        {% else %}
-        <div class="rating">
-          <span class="rating__stars" aria-hidden="true">★★★★★</span>
-          <span class="rating__num">4.9</span>
-          <a href="#reviews" class="rating__link">2,314 reviews</a>
-        </div>
+
+        {% if section.settings.lede != blank %}
+          <p class="buybox__lede">{{ section.settings.lede }}</p>
+        {% elsif product.description != blank %}
+          <p class="buybox__lede">{{ product.description | strip_html | truncatewords: 30 }}</p>
         {% endif %}
 
-        <p class="buybox__lede">{{ product.description | default: 'One reusable tool. Zero refills.' }}</p>
-
         <form method="post" action="{{ routes.cart_add_url }}" id="productForm" enctype="multipart/form-data">
+          <input type="hidden" name="form_type" value="product" />
           <div class="price-row">
             <span class="price-row__amount" id="priceAmount">{{ current_variant.price | money_without_trailing_zeros }}</span>
             {% if current_variant.compare_at_price > current_variant.price %}
@@ -89,8 +86,12 @@
               <input type="number" name="quantity" id="qVal" value="1" min="1" />
               <button type="button" id="qPlus" aria-label="Increase">+</button>
             </div>
-            <button type="submit" class="btn btn--primary btn--cart">
-              <span>Add to cart</span><span class="dot">·</span><span id="ctaPrice">{{ current_variant.price | money_without_trailing_zeros }}</span>
+            <button type="submit" class="btn btn--primary btn--cart" {% unless current_variant.available %}disabled{% endunless %}>
+              {% if current_variant.available %}
+                <span>Add to cart</span><span class="dot">·</span><span id="ctaPrice">{{ current_variant.price | money_without_trailing_zeros }}</span>
+              {% else %}
+                <span>Sold out</span>
+              {% endif %}
             </button>
           </div>
         </form>
@@ -104,12 +105,6 @@
 
         <div class="accord">
           <details open><summary>Details</summary><div>{{ product.description }}</div></details>
-          {% if product.metafields.custom.whats_in_the_box %}
-          <details><summary>What's in the box</summary>{{ product.metafields.custom.whats_in_the_box }}</details>
-          {% endif %}
-          {% if product.metafields.custom.specs %}
-          <details><summary>Specs</summary>{{ product.metafields.custom.specs }}</details>
-          {% endif %}
           <details><summary>Shipping & returns</summary><p>Free US shipping, ships in 1 business day. International shipping calculated at checkout. 30-day money-back if it doesn't earn its spot in your home.</p></details>
         </div>
       </aside>
@@ -130,7 +125,7 @@
     <div class="wrap finalcta__inner">
       <h2>Try it for 30 days.<br/><em>Keep it for years.</em></h2>
       <p>If {{ product.title }} doesn't earn its spot in your home, send it back. Full refund, no questions.</p>
-      <a href="#buy" class="btn btn--primary btn--lg">Add to cart</a>
+      <a href="#productForm" class="btn btn--primary btn--lg">Add to cart</a>
     </div>
   </section>
 </main>
@@ -146,7 +141,6 @@
   document.getElementById('qPlus').addEventListener('click', function(){ qty.value = (+qty.value || 1) + 1; });
   document.getElementById('qMinus').addEventListener('click', function(){ qty.value = Math.max(1, (+qty.value || 1) - 1); });
 
-  // gallery thumb switcher
   document.querySelectorAll('.thumb').forEach(function(t){
     t.addEventListener('click', function(){
       document.querySelectorAll('.thumb').forEach(function(x){ x.classList.remove('is-active'); });
@@ -155,7 +149,6 @@
     });
   });
 
-  // option pickers
   var selected = [];
   document.querySelectorAll('.variant-row').forEach(function(row){
     var i = +row.dataset.optionIndex;
@@ -186,3 +179,18 @@
   }
 })();
 </script>
+
+{% schema %}
+{
+  "name": "Product",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow text", "default": "The original" },
+    { "type": "text", "id": "lede", "label": "Short pitch (overrides product description)", "default": "One reusable tool. Zero refills. Lifts pet hair, lint, and fuzz from every surface your dog calls a bed." },
+    { "type": "text", "id": "rating", "label": "Rating display", "default": "4.9" },
+    { "type": "text", "id": "review_count", "label": "Review count display", "default": "2,314" }
+  ],
+  "presets": [
+    { "name": "Product" }
+  ]
+}
+{% endschema %}
